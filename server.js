@@ -43,6 +43,11 @@ app.post('/login', passport.authenticate('local', {
   failureFlash: true
 }))
 
+app.get('/logout', function(req, resp) {
+  req.logout()
+  resp.redirect('/')
+})
+
 app.post('/register', async (req, resp) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
